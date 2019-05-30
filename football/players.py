@@ -8,13 +8,14 @@ class Player:
     and that's okay
     '''
     def __init__(self, name=None, yards=120, touchdowns=5, safety=1,
-                 interceptions=0, field_goals=3):
+                 interceptions=0, field_goals=3, stats=None):
         self.name = name
         self.yards = yards
         self.touchdowns = touchdowns
         self.safety = safety
         self.interceptions = interceptions
         self.field_goals = field_goals
+        self.stats = stats 
 
     def get_points(self):
         '''Gets points scored by the player from stats
