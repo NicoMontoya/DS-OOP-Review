@@ -1,6 +1,6 @@
 '''Game class to model a football game
 '''
-from possible_values import team_names
+from possible_values import team_names, locations, weeks
 import random
 
 
@@ -27,7 +27,7 @@ class Game:
         team name
     '''
 
-    def __init__(self, teams=None, location=None, score=None, week=None):
+    def __init__(self, teams=random.sample(team_names, 2), location=random.sample(locations, 1), score=None, week=random.sample(weeks, 1)):
         self.teams = teams
         self.location = location
         if teams and not score:
@@ -83,4 +83,5 @@ class Game:
         self.winning_team_ = k[v.index(max(v))]
         self.losing_team_ = k[v.index(min(v))]
 
-        return self.winning_team_, self.losing_team_
+        print(self.winning_team_, ':', self.score[self.winning_team_], self.losing_team_, ':', self.score[self.losing_team_])
+        return self.winning_team_, self.losing_team_ 

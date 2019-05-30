@@ -15,14 +15,20 @@ class Player:
         self.safety = safety
         self.interceptions = interceptions
         self.field_goals = field_goals
-        self.stats = stats 
+        if name and not stats:
+            self.stats = {'td':self.touchdowns, 'yds':self.yards , 'safety':self.safety, 'int':self.interceptions, 'fg':self.field_goals}
+        else:
+            self.stats = stats 
 
     def get_points(self):
         '''Gets points scored by the player from stats
         '''
         td_points = 6 * self.stats['td']
         safety_points = 2 * self.stats['safety']
-        total_points = td_points + safety_points
+        yard_points = self.stats['yds']
+        int_points = -2 * self.stats['int']
+        fg_points = 3 * self.stats['fg']
+        total_points = td_points + safety_points + yard_points + int_points + fg_points
         return total_points
 
 
@@ -39,7 +45,7 @@ class Quarterback(Player):
     def passing_score(self):
         '''This is a random formula... FYI
         '''
-        score = self.completed_passes - (2 * self.interceptions)
+        score = (6 * self.touchdowns) + self.completed_passes - (10 * self.interceptions) + self.yards
         return score
 
 # TODO - refine the default player stats and/or make a defensive player default
